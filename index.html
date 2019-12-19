@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Sample Embeded Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://unpkg.com/amazon-quicksight-embedding-sdk@1.0.5/dist/quicksight-embedding-js-sdk.min.js"></script>
+  <!--<script async src="index.js"></script> -->
+  <!-- test -->
+  <script type = "text/javascript"> 
+            var dashboard
+            function onDashboardLoad(payload) {
+                console.log("Do something when the dashboard is fully loaded.");
+            }
+ 
+            function onError(payload) {
+                console.log("Do something when the dashboard fails loading");
+            }
+            function embedDashboard() {
+                var containerDiv = document.getElementById("dashboardContainer");
+                var options = {
+                    url : "https://us-east-1.quicksight.aws.amazon.com/embed/4a3126f29c9d42b3811f11190225019a/dashboards/e6dbd8dc-2e77-4dd2-ac63-363d97fba964?isauthcode=true&identityprovider=quicksight&code=AYABeGUm2EpRGfor5QDMG95OYKAAAAABAAdhd3Mta21zAEthcm46YXdzOmttczp1cy1lYXN0LTE6MjU5NDgwNDYyMTMyOmtleS81NGYwMjdiYy03MDJhLTQxY2YtYmViNS0xNDViOTExNzFkYzMAuAECAQB4P-lAb3AsrVHPwO-wVCEmuFDTp0yz4wFfkrwutzPupewBbbOmZYRRrbIyXqqvwt1AuAAAAH4wfAYJKoZIhvcNAQcGoG8wbQIBADBoBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDMqDSoCaEYKaU0teXgIBEIA7LCrJnesVz8iNCWHNjN-ZCieOpcukdZzKim7fgYGuiR6o4XYMCkaPpj0cQ4-GQqkID505nOCYnoS6IJgCAAAAAAwAABAAAAAAAAAAAAAAAAAA_GpmqGZVOz7Q47Xmuu26m_____8AAAABAAAAAAAAAAAAAAABAAAAm4QSgPGoNAovr8vx9nq2x3koZXg-te7Od0cDtugww3NhEXFz_LO_igKRuSL1thjTsPQcvMSHN14k8pH6bKIRLaMa0sT8Xm0Wf7U4s6WNp_a13ZCaSmWi7qnxh-qxZgBEV3LT6WtW8VzXy2jjoqQIbVNSz1q2gLele_Pr9QnFu_NsSESQepXFrV5UrN5hu1wLoMskoLoqzpdeZgWz_j8YTiDJVZiR9mjfbIvytw%3D%3D", 
+                    container: containerDiv,
+                    
+                    scrolling: "no",
+                    height: "700px",
+                    width: "1000px"
+                };
+                dashboard = QuickSightEmbedding.embedDashboard(options);
+                dashboard.on('error', onError);
+                dashboard.on('load', onDashboardLoad);
+            }
+            
+      //dashboard = QuickSightEmbedding.embedDashboard(options);
+            </script>
+
+
+  </head>
+    <body onload="embedDashboard()">
+     
+    <h1>Hello, World!</h1>
+    <h4 id='date'></h4>
+   <div id="dashboardContainer"></div> 
+  </body>
+   
+</html>
